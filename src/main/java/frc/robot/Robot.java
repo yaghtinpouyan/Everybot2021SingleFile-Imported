@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.util.sendable.SendableRegistry;
 
@@ -27,7 +27,7 @@ public class Robot extends TimedRobot {
 
   //Intake - Create a motor controller and a pneumatic solenoid
   VictorSP intakeMotor = new VictorSP(3);
-  Solenoid intakePneumatic = new Solenoid(0); 
+  Solenoid intakePneumatic = new Solenoid(PneumaticsModuleType.CTREPCM, 0); 
 
     /**
    * This method is run when the robot is first started up and should be
