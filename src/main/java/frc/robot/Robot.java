@@ -27,7 +27,10 @@ public class Robot extends TimedRobot {
 
   //Intake - Create a motor controller and a pneumatic solenoid
   VictorSP intakeMotor = new VictorSP(3);
-  Solenoid intakePneumatic = new Solenoid(PneumaticsModuleType.CTREPCM, 0); 
+  Solenoid intakePneumatic = new Solenoid(PneumaticsModuleType.CTREPCM, 0);
+  
+  //Climb motor
+  VictorSP climbMotor = new VictorSP(4);
 
     /**
    * This method is run when the robot is first started up and should be
@@ -39,6 +42,8 @@ public class Robot extends TimedRobot {
     SendableRegistry.add(drive, "drive");
     SendableRegistry.add(intakeMotor, "intakeMotor");
     SendableRegistry.add(intakePneumatic, "intakePneumatic");
+    // Add climb to the shuffleboard
+    SendableRegistry.add(climbMotor, "climb");
   }
 
   /**
@@ -69,5 +74,23 @@ public class Robot extends TimedRobot {
     } else{
       intakeMotor.stopMotor();
     }
+
+    //This will be the climb for teleop which will run in a loop every 0.2 seconds
+    if(controller.getAButtonPressed() && controller.getYButtonPressed()){
+      climbMotor.set(0);
+    }
+    else{
+      if(controller.getYButtonPressed()){
+        climbMotor.set(1);
+      }
+      else if(controller.getYButtonPressed()){
+        climbMotor.set(-1);
+      }
+      else{
+        climbMotor.set(0);
+      }
+
+    }
   }
+    
 }
